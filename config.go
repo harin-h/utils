@@ -13,6 +13,13 @@ type Config struct {
 
 var config *Config
 
+func init() {
+	err := readConfig()
+	if err != nil {
+		panic(err)
+	}
+}
+
 func readConfig() error {
 	configObj := &Config{}
 	configFile, err := os.ReadFile("./config.yaml")
@@ -25,11 +32,4 @@ func readConfig() error {
 	}
 	config = configObj
 	return nil
-}
-
-func InitializedConfig() {
-	err := readConfig()
-	if err != nil {
-		panic(err)
-	}
 }
